@@ -1,0 +1,28 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.5.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.21",
+    "@types/express": "^4.17.13",
+    "@types/mocha": "^9.0.0",
+    "chai": "^4.3.4",
+    "mocha": "^9.0.3",
+    "nyc": "^15.1.0",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.3.5"
+  },
+  "scripts": {
+    "build": "rimraf ./dist && tsc",
+    "start": "node dist/src/index.js",
+    "lint": "eslint '{src,test}/**/*.ts' --cache --fix",
+    "test": "NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --exit -r ts-node/register tests/**/*.test.ts --timeout 30000"
+  }
+}
