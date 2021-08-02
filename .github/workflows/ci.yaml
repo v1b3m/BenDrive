@@ -1,0 +1,48 @@
+name: BenDrive Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  container-job:
+    runs-on: ubuntu-latest
+
+    # runs all of the steps inside the specified container rather than on the VM host.
+    # Because of this the network configuration changes from host based network to a container network.
+    container:
+      image: node:14
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Restore Cache
+        id: restore-cache
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Install dependencies
+        if: steps.restore-cache.outputs.cache-hit != 'true'
+        run: yarn install && npx lerna bootstrap
+
+      - name: Check Linting
+        run: npx lerna run lint
+
+      - name: Check app build
+        run: npx lerna run build
+
+      - name: Run tests
+        run: npx lerna run test
