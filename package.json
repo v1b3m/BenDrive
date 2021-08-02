@@ -19,7 +19,6 @@
   "lint-staged": {
     "*.{js,css,md,ts,tsx}": "prettier --write"
   },
-  "dependencies": {},
   "config": {
     "commitizen": {
       "path": "node_modules/cz-customizable"
