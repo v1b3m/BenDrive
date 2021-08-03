@@ -10,3 +10,6 @@ export function bytesToSize(bytes: number): string {
 }
 
 export const filename = (path = ""): string => path.replace(/^.*[\\/]/, "");
+
+export const fileExtension = (path = ""): string | undefined =>
+  path.split(".").pop();

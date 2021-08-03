@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Button, Center } from "@chakra-ui/react";
 import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import Header from "./components/Header";
 import Listing from "./components/Listing";
@@ -15,6 +15,7 @@ function App(): JSX.Element {
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const [error, setError] = useState("");
   const [selected, setSelected] = useState<ListItem>();
+  const [page, setPage] = useState(1);
 
   const { state, set: setHistory, canUndo, undo } = useHistory("");
 
@@ -66,14 +67,27 @@ function App(): JSX.Element {
 
   const notInSubDirectory = getNotInSubDirectory();
 
+  const loadMore = () => {
+    getDirectoryListing(debouncedSearchTerm, page + 1)
+      .then(results => {
+        setIsSearching(false);
+        setListing([...listing, ...results.listing]);
+        setPage(page + 1);
+        setError("");
+      })
+      .catch(error => {
+        setError(error);
+      });
+  };
+
   return (
-    <Box>
+    <Box bg="brand.mediumAquamarine">
       <Header
         isSearching={isSearching}
         onChangeText={onChangeText}
         searchTerm={searchTerm}
       />
-      <Flex p="7rem 2rem" bg="brand.mediumAquamarine" minH="100vh">
+      <Flex p="7rem 2rem 0 2rem" minH="100vh">
         <Listing
           error={error}
           canUndo={canUndo}
@@ -84,6 +98,18 @@ function App(): JSX.Element {
         />
         <Stats setSelected={setSelected} selected={selected} />
       </Flex>
+      {listing.length > 0 && (
+        <Center>
+          <Button
+            m="2rem 0"
+            onClick={loadMore}
+            bg="brand.prussianBlue"
+            _hover={{ bg: "brand.illuminatingEmerald" }}
+          >
+            Load More
+          </Button>
+        </Center>
+      )}
     </Box>
   );
 }
