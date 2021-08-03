@@ -1,9 +1,12 @@
 import fs from "fs";
 import glob from "glob";
+import _ from "lodash";
 import { ListingParams, ListItem } from "./types";
 
 export const getDirectories = (src: string): string[] =>
   glob.sync(src + "/**/*");
+
+const memoizedGetDirectories = _.memoize(getDirectories);
 
 export const isFile = (path: string): boolean => fs.lstatSync(path).isFile();
 export const isDirectory = (path: string): boolean =>
@@ -28,4 +31,4 @@ export function paginate<T>(array: T[], page_size = 10, page_number = 1): T[] {
 }
 
 export const listing = ({ path, page, pageSize }: ListingParams): ListItem[] =>
-  paginate(pathsWithStats(getDirectories(path)), pageSize, page);
+  paginate(pathsWithStats(memoizedGetDirectories(path)), pageSize, page);

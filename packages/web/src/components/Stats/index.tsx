@@ -36,6 +36,7 @@ export default function Stats({ selected, setSelected }: Props): JSX.Element {
       boxShadow="-3px 0 15px #05386b"
       p={selected ? "1rem" : 0}
       color="brand.prussianBlue"
+      maxH="30rem"
     >
       <Flex align="center" justify="space-between">
         <Text fontWeight="bold" color="brand.beige" fontSize="24">

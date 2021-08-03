@@ -1,4 +1,4 @@
-import { Box, Grid, Text } from "@chakra-ui/react";
+import { Box, Grid, Text, Flex } from "@chakra-ui/react";
 import React from "react";
 import { AiFillFileImage, AiFillFolderOpen } from "react-icons/ai";
 import { TiArrowBack } from "react-icons/ti";
@@ -23,13 +23,14 @@ export default function Listing({
   setHistory
 }: Props): JSX.Element {
   return (
-    <Box w="100%">
+    <Flex flexGrow={1} flexDir="row">
       {error !== "" && <Text color="red">{error}</Text>}
       <Grid
         templateColumns="repeat(auto-fill, 6rem)"
         gap="2rem"
         p="0 4rem"
         color="brand.prussianBlue"
+        width="100%"
       >
         {canUndo && (
           <Box
@@ -64,6 +65,6 @@ export default function Listing({
           );
         })}
       </Grid>
-    </Box>
+    </Flex>
   );
 }

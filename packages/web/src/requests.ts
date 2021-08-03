@@ -1,7 +1,10 @@
 import { gql, GraphQLClient } from "graphql-request";
 import { ListItem } from "./types";
+import { apiURI } from "./config";
 
-export const client = new GraphQLClient("http://localhost:4000/graphql");
+export const client = new GraphQLClient(
+  apiURI || "http://localhost:4000/graphql"
+);
 
 const getListing = gql`
   query GetListing($path: String, $page: Int = 1, $pageSize: Int = 10) {
