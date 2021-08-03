@@ -1,17 +1,11 @@
 import express from "express";
 import { graphqlHTTP } from "express-graphql";
-import { buildSchema } from "graphql";
-
-const schema = buildSchema(`
-    type Query {
-        hello: String
-    }
-`);
+import { schema } from "./schema";
+import { listing } from "./utils";
 
 export const root = {
-  hello: (): string => {
-    return "Hello world!";
-  }
+  hello: (): string => "Hello world!",
+  listing
 };
 
 const app = express();
