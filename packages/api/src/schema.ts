@@ -25,6 +25,7 @@ export const schema = buildSchema(`
         ctimeMs: Float!
         birthtimeMs: Float!
         atime: DateTime!
+        birthtime: DateTime!
     }
 
     type ListItem {

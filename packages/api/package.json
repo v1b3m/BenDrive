@@ -28,7 +28,7 @@
   },
   "scripts": {
     "build": "rimraf ./dist && tsc",
-    "start": "node dist/src/index.js",
+    "start": "node dist/src/index.js | pino-pretty",
     "lint": "eslint '{src,test}/**/*.ts' --cache --fix",
     "test": "NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --exit -r ts-node/register tests/**/*.test.ts --timeout 30000"
   }
