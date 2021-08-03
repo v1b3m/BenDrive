@@ -19,16 +19,9 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
-[![Issues][issues-shield]][https://github.com/v1b3m/bendrive/issues]
-[![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/benjamin-mayanja/]
-
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/v1b3m/BenDrive">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
   <h3 align="center">BenDrive</h3>
 
   <p align="center">
@@ -71,7 +64,8 @@
 
 ## About The Project
 
-[![BenDrive Screen Shot][product-screenshot]](https://user-images.githubusercontent.com/39791369/128062289-2adbb2eb-6732-4da4-bfef-e834e42990c4.png)
+![BenDrive screenshot](https://user-images.githubusercontent.com/39791369/128070515-0fa46174-5380-41bf-a66a-0e3517d83c0c.png)
+
 
 Here's a blank template to get started:
 **To avoid retyping too much info. Do a search and replace with your text editor for the following:**
@@ -184,7 +178,10 @@ The steps below assume you're working in the `packages/web` directory
 
 4. To obtain stats about a given file, double click the file
 5. To open a subdirectory to view its files, double click the subdirectory
-   https://user-images.githubusercontent.com/39791369/128067146-d26df2f0-1dc9-47e3-9e20-5b46d2bc731c.mp4
+
+https://user-images.githubusercontent.com/39791369/128069933-1175eb2a-1ca3-4ed8-98d7-56e17c9e355d.mp4
+
+
 
 #### SSH into the docker container
 
